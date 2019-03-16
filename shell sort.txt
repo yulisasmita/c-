@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+
+int main(int argc, char **argv)
+{
+	int banyak_data, i, j, tampung, bagi;
+    
+    cout<<" masukkan jumlah data : ";
+    cin>>banyak_data;
+    
+    int data[banyak_data];
+    
+    srand(time(NULL));
+    for(i=0; i<banyak_data; i++)
+    {
+        data[i]=rand()%100;
+    }
+    
+    
+    bagi=banyak_data/2;
+    
+    do
+    {
+        for(i=bagi; i<banyak_data; i++)
+        {
+            tampung=data[i];
+            j=i-bagi;
+            while(j>=0 && data[j]>tampung)
+            {
+                data[j+bagi]=data[j];
+                j=j-bagi;
+            }
+            data[j+bagi]=tampung;
+        }
+        bagi=bagi/2;
+    }
+    while(bagi>0);
+    
+    cout<<"\nhasil : ";
+    for(i=0; i<banyak_data; i++)
+    {
+        cout<<data[i]<<"  ";
+    }
+    cout<<"\n\n";
+	return 0;
+}
